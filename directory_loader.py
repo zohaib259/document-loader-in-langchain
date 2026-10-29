@@ -14,6 +14,7 @@ loader = DirectoryLoader(
 )
 
 print("Loading PDF books...")
-documents = loader.load()
+docs = loader.lazy_load()
 
-print(f"Total pages loaded across all books: {len(documents)}")
+for documents in docs:
+    print(documents.metadata)
