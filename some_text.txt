@@ -1,0 +1,23 @@
+# Document Title: Understanding Retrieval-Augmented Generation (RAG)
+# Author: AI Engineering Team
+# Date: October 2026
+
+1. Introduction to RAG
+Retrieval-Augmented Generation (RAG) is an architectural framework designed to enhance the reliability and factual accuracy of Large Language Models (LLMs). While native LLMs excel at language comprehension and reasoning, their knowledge is fixed to their training cutoff date. RAG addresses this limitation by connecting the model to external knowledge bases dynamically.
+
+2. How Document Loaders Work
+Before an LLM can retrieve information, real-world data must be ingested and structured. Document loaders serve as the entry point of any RAG pipeline. Their primary role is to read raw files—such as text files, PDFs, CSVs, or web pages—and convert them into standardized Document objects. Each Document object typically contains two primary components:
+- Page Content: The actual textual data from the file.
+- Metadata: Key-value pairs containing source paths, page numbers, titles, or creation dates.
+
+3. The Text Chunking Process
+Once a file is loaded, the raw text is usually too large to pass directly into an embedding model or LLM context window. Engineers break the text into smaller, manageable fragments using text splitters. Common strategies include:
+- Character-based splitting: Separating text by raw character counts.
+- Recursive character splitting: Intelligently splitting by paragraphs, sentences, and punctuation to keep related context intact.
+- Semantic chunking: Grouping sentences based on vector distance and meaning.
+
+4. Vector Embeddings and Indexing
+After splitting, each text chunk is passed through an embedding model (such as OpenAI's text-embedding-3-small or open-source Hugging Face models) to generate a dense numerical representation known as a vector. These vectors capture semantic relationships between words and sentences. Finally, the vectors and their corresponding text chunks are saved into a vector database like Pinecone, ChromaDB, or Qdrant for fast similarity search.
+
+5. Summary
+Building robust RAG systems requires careful attention to data ingestion. By mastering document loaders and text preprocessing, developers can ensure their AI applications provide accurate, context-aware, and hallucination-free answers.
